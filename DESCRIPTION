@@ -1,0 +1,11 @@
+Package: FEMetaBin
+Type: Package
+Title: Improved Inference for Fixed-effects Meta-analysis with Several 2x2 Tables
+Version: 0.1.0
+Author: Kendrick Qijun Li
+Maintainer: Kendrick Qijun Li <qijunl2@uw.edu>
+Description: FeMetaBin obtains the confidence interval of logarithm of Cochran-Mantel-Haenszel estimator, Woolf's estimator of MLE of an assumed-common log odds ratio without assuming homogeneity.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
