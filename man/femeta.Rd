@@ -2,18 +2,56 @@
 % Please edit documentation in R/femeta.R
 \name{femeta}
 \alias{femeta}
-\title{Generic Fixed-effects Meta-analysis with Several 2x2 Tables}
+\title{Improved Inference for Fixed-effects Meta-analysis with Several 2x2 Tables}
 \usage{
-femeta(x, ...)
+femeta(x, ai, bi, ci, di, n1i, n2i, data, slab, subset,
+  correction_factor = 0.01, drop00 = FALSE, estimator = "log-CMH",
+  vtype = "Het", alternative = "two.sided", conf.level = 0.95,
+  null.value = 0)
 }
 \arguments{
-\item{x}{an object used to select a method. Currently x can be either a 2x2xK array, which links to \link{femeta.array} method,
-or a integer vector, which leads to the use of \link{femeta.default}.}
+\item{x}{a 2x2xK array that gives the counts of cases and non-cases in treatment and control arms in each study}
 
-\item{...}{further arguments passed to or from other methods.}
+\item{ai}{vector to specify the 2x2 table frequencies (upper left cell); number of cases in the treatment arms.}
+
+\item{bi}{vector to specify the 2x2 table frequencies (upper right cell); number of cases in the control arms.}
+
+\item{ci}{vector to specify the 2x2 table frequencies (lower left cell); number of non-cases in the treatment arms.}
+
+\item{di}{vector to specify the 2x2 table frequencies (lower right cell); number of non-cases in the control arms.}
+
+\item{n1i}{vector to specify the group sizes or column totals (first group/column).}
+
+\item{n2i}{vector to specify the groups sizes or column totals (second group/column).}
+
+\item{data}{optional data frame containing the variables given to the arguments above.}
+
+\item{slab}{optional vector with labels for the studies.}
+
+\item{subset}{optional vector indicating the subset of studies that should be used.
+This can be a logical vector or a numeric vector indicating the indices of the studies to include.}
+
+\item{correction_factor}{A scalar used for zero-cell correction. Intuitively it is the total number of
+subjects added to each group of a study. A small correction factor induces less bias. The default is 0.01.
+See 'Details'.}
+
+\item{drop00}{logical indicating whether studies with no cases/events (or only cases) in both groups
+should be dropped when calculating the observed outcomes of the individual studies. See 'Details'.}
+
+\item{estimator}{a character string indicating which estimator is used to summarize to overall association (either "log-CMH",
+"Woolf" or "CEMLE"). See 'Details'.}
+
+\item{vtype}{a character string indicating whether to assume homogeneity when calculating the variance (either "Het" or "Hom).}
+
+\item{alternative}{a character string indicating the alternative hypothesis and must be one of "two.sided", "greater"
+or "less". You can specify just the initial letter.}
+
+\item{conf.level}{a scalar indicating the confidence level for the returned confidence interval.of the}
+
+\item{null.value}{scalar indicating the value of the parameter of interest (some summary of the true effect sizes)}
 }
 \description{
-Generic function for obtaining the confidence interval of logarithm of Cochran-Mantel-Haenszel estimator,
+Obtaining the confidence interval of logarithm of Cochran-Mantel-Haenszel estimator,
 Woolf's estimator of MLE of an assumed-common log odds ratio without assuming
 homogeneity
 }

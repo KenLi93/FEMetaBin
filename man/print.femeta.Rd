@@ -4,7 +4,8 @@
 \alias{print.femeta}
 \title{Printing results of fixed-effects meta-analysis}
 \usage{
-\method{print}{femeta}(x, digits = getOption("digits"), prefix = "\\t")
+\method{print}{femeta}(x, digits = getOption("digits"), prefix = "\\t",
+  ...)
 }
 \arguments{
 \item{x}{object of class "femeta"}
@@ -12,6 +13,8 @@
 \item{digits}{number of significant digits to be used}
 
 \item{prefix}{string, passed to strwrap for displaying the method component of the \code{femeta} object.}
+
+\item{...}{other arguments passed to the method.}
 }
 \description{
 Printing results of fixed-effects meta-analysis

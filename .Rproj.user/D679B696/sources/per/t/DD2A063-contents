@@ -1,0 +1,61 @@
+---
+title: "An Introduction to FEMetaBin"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro-FEMetaBin}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction
+FEMetaBin is an R package that provides well-calibrated inference for three estimators in meta-analysis of studies with binary data: logarithm of Cochran-Mantel-Haenzel estimator, Woolf's estimator and MLE of an assumed-common log odds ratio. Each of the estimators gives a summary measure of two binary variable, averaged over all the studies.
+
+More formally, we consider a meta-analysis of $k$ studies where data of each study contain a binary outcome $Y$ and a binary covariate $X$. Following convention, we call the population with $X=1$ the *treatment* group and $X=0$ the *control* group, though the methods are useful well beyond the setting of controlled trials. The counts of subjects for each combination of levels of outcome and covariate in study $j$ can be laid out in a $2\times 2$ contingency table as follows:
+
+|       |  X = 1  |  X = 0  | Total  |
+|:-----:|:-------:|:-------:|:------:|
+| Y = 1 |  $a_j$  |  $b_j$  |$n_{1j}$|
+| Y = 0 |  $c_j$  |  $d_j$  |$n_{0j}$|
+| Total | $m_{1j}$| $m_{0j}$|  $N_j$ |
+
+All three estimator mentioned above summarizes the association of $X$ and $Y$ on the log odds ratio scale. Standard methods construct confidence intervals using variance derived under the assumption of homogeneity, namely the log odds ratio $\psi_j$ for each subtable is equal, where
+$$\psi_j=\log\left(\frac{a_jd_j}{b_jc_j}\right).$$
+The homogeneity assumption, however, is often unrealistic in practice. In FEMetaBin, the derivation of confidence intervals if free of assumptions: we allow the subtable-specific log odds ratios to be different. The resulted confidence intervals are more thus theoretically better calibrated when the effect sizes are truly different. 
+
+In many examples, the confidence intervals derived with or without homogeneity assumptions are only slightly different. We will illustrate the functionality and results of FEMetaBin with the following example.
+
+## Example: Sclerotherapy
+
+We use the example of a meta-analysis of 19 studies. The goal is to assess the effect of sclerotherapy in preventing first bleeding in patients with cirrhosis and esophagogastric varices. The data is stored "sclerotherapy" dataset in FEMetaBin:
+
+```{r load_data}
+library(FEMetaBin)
+data("sclerotherapy")
+sclerotherapy
+```
+The sclerotherapy data contain 5 columns: the first column is the name of the trial or author names of the publication; the rest four columns are number of subjects in control and treatment arms and the number of bleeding cases in control and treatment arms, respectively. 
+
+We assess the association between sclerotherapy and first bleeding using Woolf's estimator:
+
+```{r woolf}
+femeta(ai = tcases, bi = ccases, n1i = tcounts, n2i = ccounts, data = sclerotherapy, estimator = "Woolf")
+```
+
+Among the arguments of the function, we use *ai* and *bi* to specify the number of bleeding cases, and *n1i* and *n2i* to specify the number of subjects, in treatment and control arms respectively. The *estimator* argument indicates we are using Woolf's estimator to assess the overall association.
+
+From the output of the function, Woolf's estimator gives a negative overall log odds ratio -0.502. The 95% confidence interval is (-0.713, -0.290). We conclude that averaging across all studies, patients receiving sclerotherapy are less likely to develop first bleeding during the study period. 
+
+We compare the results where inference of Woolf's estimator is based on homogeneity assumption:
+
+```{r woolf_hom}
+femeta(ai = tcases, bi = ccases, n1i = tcounts, n2i = ccounts, data = sclerotherapy, estimator = "Woolf", vtype = "Hom")
+```
+The confidence interval is (-0.737, 0.266), slightly different from the one obtained without assuming homogeneity.

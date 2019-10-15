@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1571092246275.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "3446253416",
+    "id" : "70389963",
+    "lastKnownWriteTime" : 1571093789,
+    "last_content_update" : 1571093789283,
+    "path" : "E:/github/FEMetaBin/R/sclerotherapy.R",
+    "project_path" : "R/sclerotherapy.R",
+    "properties" : {
+        "cursorPosition" : "15,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

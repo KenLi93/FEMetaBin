@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1570584576152.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1481112298",
+    "id" : "986EE581",
+    "lastKnownWriteTime" : 1571010481,
+    "last_content_update" : 1571010482227,
+    "path" : "P:/git/FEMetaBin/R/femeta.R",
+    "project_path" : "R/femeta.R",
+    "properties" : {
+        "cursorPosition" : "386,43",
+        "scrollLine" : "383"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
