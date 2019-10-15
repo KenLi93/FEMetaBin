@@ -30,6 +30,17 @@
 
 #' @importFrom stats glm pchisq pnorm qnorm
 #'
+#' @examples
+#' data(sclerotherapy)
+#'
+#' ### a meta analysis of 19 studies investigating the effect of sclerotherapy
+#' ### on first bleeding.
+#' ### we use Woolf's estimator to summarize the overall association
+#'
+#' femeta(ai = tcases, bi = ccases, n1i = tcounts, n2i = ccounts,
+#' data = sclerotherapy, estimator = "Woolf")
+#'
+#'
 #' @export
 femeta <- function(x, ai, bi, ci, di, n1i, n2i,
                    data, slab, subset, correction_factor = 0.01,

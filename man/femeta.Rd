@@ -55,3 +55,15 @@ Obtaining the confidence interval of logarithm of Cochran-Mantel-Haenszel estima
 Woolf's estimator of MLE of an assumed-common log odds ratio without assuming
 homogeneity
 }
+\examples{
+data(sclerotherapy)
+
+### a meta analysis of 19 studies investigating the effect of sclerotherapy
+### on first bleeding.
+### we use Woolf's estimator to summarize the overall association
+
+femeta(ai = tcases, bi = ccases, n1i = tcounts, n2i = ccounts,
+data = sclerotherapy, estimator = "Woolf")
+
+
+}
